@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header><a href="index.html">Front page</a></header>
+
+    <main>
+      <div class="formcontainer">
+        <form class="let-comment">
+          <input type="hidden" name="parentId" id="parentId" />
+          <label for="">
+            Email
+            <input type="email" name="email" required />
+          </label>
+          <label for="">
+            User name
+            <input type="text" name="username" required />
+          </label>
+          <label for="">
+            Comment
+            <textarea name="comment" required></textarea>
+          </label>
+
+          <input type="submit" value="Send Comment" />
+          <p id="submitSMS" class="hidden">Your comment is post</p>
+        </form>
+      </div>
+      <article class="articlePage">
+        <h1></h1>
+        <h2>by <span></span></h2>
+        <p></p>
+        <button id="btnComment">Comment</button>
+      </article>
+
+      <h2>Comments</h2>
+
+      <div class="commentsContainer"></div>
+    </main>
+    <template class="commentPost">
+      <article class="comment">
+        <h3 class="commentAutor">by <span></span></h3>
+        <p></p>
+      </article>
+    </template>
+
+    <script src="js/article.js"></script>
+  </body>
+</html>

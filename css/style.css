@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5vh 0;
+  overflow-x: hidden;
+}
+
+header {
+  height: 10vh;
+  width: 100%;
+  background-color: rgb(227, 206, 246);
+  padding: 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+form {
+  margin-top: 15vh;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: flex-end;
+}
+
+form.let-comment {
+  margin-top: 0;
+}
+
+.formcontainer {
+  position: absolute;
+  background: blanchedalmond;
+  padding: 3rem;
+  top: 17vh;
+  left: 100%;
+}
+
+.slideIn {
+  animation: slideIn 1s linear forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-40vw);
+    opacity: 1;
+  }
+}
+
+.listwraper {
+  width: 60vw;
+  margin-top: 15vh;
+}
+
+.purple {
+  background: blueviolet;
+}
+
+.hidden {
+  display: none;
+}
+
+.ingredients {
+  border: solid black 2px;
+  width: 20vw;
+  min-height: 10vw;
+  padding: 10px;
+}
+
+article {
+  margin: 10px;
+  box-shadow: 0 0 10px black;
+  padding: 20px;
+  width: 30vw;
+  height: auto;
+}
+article * + * {
+  display: block;
+  margin-top: 1rem;
+}
+
+article.articlePage {
+  margin-top: 15vh;
+}
