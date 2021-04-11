@@ -1,24 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap");
+:root {
+  --hight: calc(150px + 6rem);
+  --bg_link: rgb(58, 106, 112);
+  --bg_header: rgb(99, 178, 189);
+  --square_side: 15vw;
+  --big_square_side: 50vw;
+}
+
 * {
   margin: 0;
   padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
 }
+
 main {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 5vh 0;
-  overflow-x: hidden;
+  flex-direction: column;
+  margin-top: var(--hight);
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+/*----------header & nav---------------*/
+
+header a.btn {
+  color: white;
+  font-size: 1.2rem;
+  background-color: var(--bg_link);
+  padding: 0.5rem 1rem;
 }
 
 header {
-  height: 10vh;
+  height: auto;
   width: 100%;
-  background-color: rgb(227, 206, 246);
+  background-color: var(--bg_header);
   padding: 2rem;
   position: fixed;
   top: 0;
   left: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+header h1 {
+  font-family: "Love Ya Like A Sister", cursive;
+  color: white;
+  font-size: 3.5rem;
+  font-weight: lighter;
+}
+
+div.wraper-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+div.logo {
+  background: url(../assets/bike-logo.svg);
+  height: 150px;
+  width: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/*-------------------------*/
+
+main.article {
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapperArticlePage {
+  display: flex;
+  position: relative;
+  height: 80vh;
+  padding-bottom: 0;
+  background-color: violet;
+}
+
+.wrapperArticlePage > h2 {
+  text-align: center;
+}
+
+article.articlePage {
+  display: flex;
+  flex-direction: column;
+}
+
+img.articleImage {
+  height: var(--big_square_side);
+  width: var(--big_square_side);
+  object-fit: cover;
 }
 
 form {
@@ -29,65 +108,136 @@ form {
   align-items: flex-end;
 }
 
+form.post-suggestion {
+  font-size: 1.2rem;
+}
+
+form.post-suggestion input[type="text"] {
+  border: none;
+  border-bottom: solid 2px var(--bg_header);
+  width: 20vw;
+  font-size: 1.2rem;
+}
+
+form.post-suggestion input[type="submit"] {
+  border: none;
+  background-color: var(--bg_link);
+  color: white;
+  width: 20vw;
+  font-size: 1.2rem;
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+
+form.post-suggestion textarea {
+  width: 20vw;
+  min-height: 10vw;
+  padding: 0.5rem;
+  border: solid 2px var(--bg_header);
+}
+
 form.let-comment {
   margin-top: 0;
 }
 
 .formcontainer {
-  position: absolute;
   background: blanchedalmond;
   padding: 3rem;
-  top: 17vh;
-  left: 100%;
-}
-
-.slideIn {
-  animation: slideIn 1s linear forwards;
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(0);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(-40vw);
-    opacity: 1;
-  }
+  position: absolute;
+  right: 0;
+  transform: scaleY(0);
+  transform-origin: top;
 }
 
 .listwraper {
-  width: 60vw;
-  margin-top: 15vh;
+  width: auto;
 }
 
+article {
+  margin: 10px;
+  /* box-shadow: 0 0 80px rgba(0, 0, 0, 0.116); */
+  padding: 20px;
+  width: 50vw;
+  height: calc(var(--square_side) + 2vw);
+}
+article * + * {
+  /* display: block; */
+  margin-top: 2rem;
+}
+
+article.frontPage {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin: 2rem 0;
+  justify-content: center;
+  transition: 0.2s ease;
+}
+
+article.frontPage:hover {
+  transform: scale(1.1);
+}
+
+div.imagen {
+  width: var(--square_side);
+  height: var(--square_side);
+}
+
+div.text {
+  height: var(--square_side);
+  width: calc(var(--square_side) + 5vw);
+}
+
+img.frontPage {
+  height: var(--square_side);
+  width: var(--square_side);
+  object-fit: cover;
+}
+
+div.text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: solid 4px var(--bg_header);
+  padding: 2rem 0;
+}
+/* -----------animation & actions--------------------- */
+
 .purple {
-  background: blueviolet;
+  /* background: blueviolet; */
+  filter: blur(5px);
 }
 
 .hidden {
   display: none;
 }
 
-.ingredients {
-  border: solid black 2px;
-  width: 20vw;
-  min-height: 10vw;
-  padding: 10px;
+.slideIn {
+  animation: slideIn 0.2s linear forwards;
 }
 
-article {
-  margin: 10px;
-  box-shadow: 0 0 10px black;
-  padding: 20px;
-  width: 30vw;
-  height: auto;
-}
-article * + * {
-  display: block;
-  margin-top: 1rem;
+@keyframes slideIn {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
 }
 
-article.articlePage {
-  margin-top: 15vh;
+.alert {
+  animation: alert 0.5s ease-in-out infinite;
+}
+
+@keyframes alert {
+  from {
+    background: var(--bg_link);
+    color: white;
+  }
+  to {
+    background: rgb(194, 81, 81);
+    color: white;
+  }
 }

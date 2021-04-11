@@ -30,6 +30,7 @@ function showPosts(post) {
 
   document.querySelector(".articlePage h2 span").textContent = post.username;
   document.querySelector(".articlePage h1").textContent = post.title;
+  document.querySelector("img.articleImage").src = post.imageUrl;
   document.querySelector(".articlePage p").textContent = post.content;
   console.log(post.content);
 
@@ -49,7 +50,7 @@ function showComments(comments) {
     copy.querySelector(".comment h3 span").textContent = comment.username;
     copy.querySelector(".comment p").textContent = comment.content;
     //append
-    document.querySelector(".commentsContainer").appendChild(copy);
+    document.querySelector("ul.commentList").appendChild(copy);
   });
 }
 

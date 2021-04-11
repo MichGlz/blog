@@ -15,6 +15,7 @@ function userSubmited(e) {
     title: form.elements.title.value,
     username: form.elements.username.value,
     content: form.elements.comment.value,
+    imageUrl: form.elements.imageUrl.value,
   };
 
   document.querySelector("input[type=submit]").disabled = true;
@@ -35,17 +36,19 @@ function postPost(payload) {
     .then((res) => res.json())
     .then((response) => {
       console.log(response);
-      uploadComment();
+      uploadComment(response);
     })
     .catch((err) => {
       console.error(err);
     });
 }
 
-function uploadComment() {
+function uploadComment(response) {
   document.querySelector("input[type=submit]").disabled = false;
   form.elements.title.value = "";
   form.elements.username.value = "";
   form.elements.comment.value = "";
+  form.elements.imageUrl.value = "";
   document.querySelector("#submitSMS").classList.remove("hidden");
+  window.open(`index.html?article=${response._id}`, "_self");
 }

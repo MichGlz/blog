@@ -1,11 +1,31 @@
+const urlParams = new URLSearchParams(window.location.search);
+
+const articleId = urlParams.get("article");
+
+let approveBtn;
+
+if (articleId) {
+  console.log(articleId);
+  approveBtn = document.querySelector("a.btn");
+  approveBtn.textContent = "Approve your article";
+  approveBtn.href = "#";
+  approveBtn.classList.add("alert");
+  approveBtn.addEventListener("click", approveArticle);
+}
+
+let imageUrl;
+
 function getPost() {
   /*----------get------------------------*/
-  fetch("https://reicpe-9cc2.restdb.io/rest/posts", {
-    method: "GET",
-    headers: {
-      "x-apikey": "606d5dcef5535004310074f4",
-    },
-  })
+  fetch(
+    `https://reicpe-9cc2.restdb.io/rest/posts?q{}&h={"$orderby": {"_created": -1}}`,
+    {
+      method: "GET",
+      headers: {
+        "x-apikey": "606d5dcef5535004310074f4",
+      },
+    }
+  )
     .then((res) => res.json())
     .then((response) => {
       showPosts(response);
@@ -18,7 +38,7 @@ function getPost() {
 getPost();
 
 function showPosts(posts) {
-  console.log(posts);
+  // console.log(posts);
   //grab the template
   const template = document.querySelector("template.postMenu").content;
 
@@ -26,73 +46,61 @@ function showPosts(posts) {
     //clone
     const copy = template.cloneNode(true);
     //adjust stuff
+    let words = post.content;
+    let word = words.split(" ");
+
     copy.querySelector("h2").textContent = post.title;
     copy.querySelector("h3 span").textContent = post.username;
     copy.querySelector("a.readMore").href = `article.html?article=${post._id}`;
+    copy.querySelector("p.intro").textContent =
+      word[0] +
+      " " +
+      word[1] +
+      " " +
+      word[2] +
+      " " +
+      word[3] +
+      " " +
+      word[4] +
+      " " +
+      word[5] +
+      " ...";
+    if (post.imageUrl) {
+      imageArt = post.imageUrl;
+    } else {
+      imageArt =
+        "https://images.unsplash.com/photo-1594171799689-5a716fd3acd4?auto=format&fit=crop&w=500&q=80";
+    }
+    copy.querySelector("img.frontPage").src = imageArt;
+    if (!post.approved) {
+      copy.querySelector("h4").textContent = "not approved";
+      copy.querySelector("article").classList.add("purple");
+      copy.querySelector("a.readMore").href = "#";
+      copy.querySelector(
+        "img.frontPage"
+      ).src = `https://images.unsplash.com/photo-1516186049182-b29897c525d1?w=500&q=80`;
+    }
+
     //append
     document.querySelector(".listwraper").appendChild(copy);
   });
 }
 
-function postPost() {
-  /*----------------------post----------------*/
-
-  fetch("https://reicpe-9cc2.restdb.io/rest/posts", {
-    method: "POST",
-    headers: {
-      "x-apikey": "606d5dcef5535004310074f4",
-      "Content-Type": "application/json",
-    },
-    body:
-      '{"title":"Hola","username":"migu03","approved":false,"content":"hola mundo 2"}',
-  })
-    .then((res) => res.json())
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  /*--------------------------------------------*/
-}
-
-function deletePost() {
-  /*--------------delete-----------------------*/
-
-  fetch("https://reicpe-9cc2.restdb.io/rest/posts/606d74973e2851510000523b", {
-    method: "DELETE",
-    headers: {
-      "x-apikey": "606d5dcef5535004310074f4",
-    },
-  })
-    .then((res) => res.json())
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-
-  /*-----------------------------------------------*/
-}
-
-function patchPost() {
-  /*------------------patch----------------------*/
-  fetch("https://reicpe-9cc2.restdb.io/rest/posts/606d72353e285151000051e2", {
+function approveArticle() {
+  console.log("approve");
+  fetch(`https://reicpe-9cc2.restdb.io/rest/posts/${articleId}`, {
     method: "PATCH",
     headers: {
       "x-apikey": "606d5dcef5535004310074f4",
       "Content-Type": "application/json",
     },
-    body:
-      '{"_id":"606d72353e285151000051e2","title":"Insomnia","username":"se03","content":"hola mundo form insomnia","_created":"2021-04-07T08:49:57.160Z","_changed":"2021-04-07T09:30:14.718Z","_createdby":"api","_changedby":"api","_keywords":["api","insomnia","se03","hola","mundo","form"],"_tags":"api insomnia se03 hola mundo form","_version":3,"approved":false}',
+    body: '{"approved":true}',
   })
-    .then((res) => res.json())
     .then((response) => {
-      console.log(response);
+      // console.log(response);
+      window.open("index.html", "_self");
     })
     .catch((err) => {
       console.error(err);
     });
-  /*----------------------------------------------------------------------------*/
 }
