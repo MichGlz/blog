@@ -29,8 +29,17 @@ function showPosts(post) {
 
   document.querySelector(".articlePage h2 span").textContent = post.username;
   document.querySelector(".articlePage h1").textContent = post.title;
-  document.querySelector("img.articleImage").src = post.imageUrl;
+
   document.querySelector(".articlePage p").textContent = post.content;
+  if (post.imageUrl) {
+    imageArt = post.imageUrl;
+  } else {
+    imageArt =
+      "https://images.unsplash.com/photo-1594171799689-5a716fd3acd4?auto=format&fit=crop&w=500&q=80";
+  }
+
+  document.querySelector("img.articleImage").src = imageArt;
+
   console.log(post.content);
 
   comments = post.comments;
@@ -119,7 +128,7 @@ function refreshComments() {
     // "https://reicpe-9cc2.restdb.io/rest/posts/" +
     //   articleId +
     //   "?fetchchildren=true",
-    `https://reicpe-9cc2.restdb.io/rest/comments?q={"_parent_id":"${articleId}"}&h={"$orderby": {"_created": 1}}`,
+    `https://reicpe-9cc2.restdb.io/rest/comments?q={"_parent_id":"${articleId}"}&h={"$orderby": {"_created": -1}}`,
 
     {
       method: "GET",
@@ -132,7 +141,7 @@ function refreshComments() {
     .then((response) => {
       // comments = response.comments;
       comments = response;
-      const articles = document.querySelectorAll(".commentsContainer article");
+      const articles = document.querySelectorAll(".commentsContainer li");
       articles.forEach((article) => {
         article.remove();
       });

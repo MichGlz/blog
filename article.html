@@ -27,15 +27,15 @@
           </div>
           <img class="articleImage" src="" alt="bicykle" />
           <p></p>
-          <form class="let-comment">
+          <form class="let-comment" autocomplete="on">
             <input type="hidden" name="parentId" id="parentId" />
             <label for="">
               Email
-              <input type="email" name="email" required />
+              <input type="email" name="email" required autocomplete="on" />
             </label>
             <label for="">
               User name
-              <input type="text" name="username" required />
+              <input type="text" name="username" required autocomplete="on" />
             </label>
             <label for="">
               Comment
@@ -47,7 +47,7 @@
         </article>
       </div>
 
-      <h2>Comments</h2>
+      <h2 id="comments">Comments</h2>
 
       <div class="commentsContainer">
         <ul class="commentList"></ul>
