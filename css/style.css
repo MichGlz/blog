@@ -41,6 +41,11 @@ header a.btn {
   padding: 0.5rem 1rem;
 }
 
+header a.btn:hover {
+  box-shadow: -1px 1px 5px black;
+  transform: scale(1.02);
+}
+
 header {
   height: auto;
   width: 100%;
@@ -83,7 +88,7 @@ main.article {
   flex-direction: column;
   align-items: center;
   height: auto;
-  padding-bottom: 5rem;
+  /* padding-bottom: 5rem; */
 }
 
 .wrapperArticlePage {
@@ -162,6 +167,7 @@ form {
 
 form.post-suggestion {
   font-size: 1.2rem;
+  margin: 2vh;
 }
 
 form.post-suggestion input[type="text"] {
@@ -180,6 +186,11 @@ form.post-suggestion input[type="submit"] {
   font-size: 1.2rem;
   padding: 0.5rem 0;
   cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+  box-shadow: -1px 1px 5px black;
+  transform: scale(1.02);
 }
 
 form.post-suggestion textarea {
@@ -208,8 +219,24 @@ form.let-comment textarea {
 }
 
 main.article > h2 {
+  display: block;
+  width: 800px;
   margin-bottom: 2rem;
   font-size: 2.2rem;
+  border-top: solid 3px var(--bg_header);
+  text-align: center;
+}
+
+div.commentsContainer {
+  padding-bottom: 4rem;
+  background: linear-gradient(
+    0deg,
+    var(--bg_header) 0%,
+    rgb(255, 255, 255) 50%
+  );
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .commentList ul {
   list-style: none;
@@ -225,8 +252,9 @@ main.article > h2 {
   font-size: 1.5rem;
   display: block;
   width: 500px;
-  padding: 1rem;
-  background-color: rgba(89, 226, 226, 0.2);
+  padding: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
 .commentList li h3 {

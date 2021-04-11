@@ -72,7 +72,6 @@ function slideIn() {
 const form = document.querySelector("form.let-comment");
 console.log(form.elements.email);
 
-form.elements.email.focus();
 form.addEventListener("submit", userSubmited);
 
 function userSubmited(e) {
