@@ -19,7 +19,6 @@ fetch(
   .then((res) => res.json())
   .then((response) => {
     showPosts(response);
-    document.querySelector("#btnComment").addEventListener("click", slideIn);
   })
   .catch((err) => {
     console.error(err);
@@ -56,7 +55,7 @@ function showComments(comments) {
 
 function slideIn() {
   document.querySelector("div.formcontainer").classList.toggle("slideIn");
-  document.querySelector("#parentId").value = articleId;
+
   console.log(document.querySelector("#parentId").value);
 }
 
@@ -69,7 +68,7 @@ form.addEventListener("submit", userSubmited);
 
 function userSubmited(e) {
   e.preventDefault();
-
+  document.querySelector("#parentId").value = articleId;
   console.log(form.elements.email.value);
   console.log(form.elements.username.value);
   console.log(form.elements.comment.value);
@@ -113,7 +112,6 @@ function uploadComment() {
   form.elements.email.value = "";
   form.elements.username.value = "";
   form.elements.comment.value = "";
-  document.querySelector("#submitSMS").classList.remove("hidden");
 }
 
 function refreshComments() {
@@ -121,7 +119,7 @@ function refreshComments() {
     // "https://reicpe-9cc2.restdb.io/rest/posts/" +
     //   articleId +
     //   "?fetchchildren=true",
-    `https://reicpe-9cc2.restdb.io/rest/comments?q={"_parent_id":"${articleId}"}&h={"$orderby": {"_created": -1}}`,
+    `https://reicpe-9cc2.restdb.io/rest/comments?q={"_parent_id":"${articleId}"}&h={"$orderby": {"_created": 1}}`,
 
     {
       method: "GET",

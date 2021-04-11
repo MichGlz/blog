@@ -17,13 +17,19 @@
 main {
   display: flex;
   justify-content: center;
-  flex-direction: column;
   margin-top: var(--hight);
 }
 
 a {
   text-decoration: none;
   color: unset;
+}
+
+article {
+  margin: 10px;
+  padding: 20px;
+  width: 50vw;
+  height: calc(var(--square_side) + 2vw);
 }
 
 /*----------header & nav---------------*/
@@ -75,29 +81,74 @@ div.logo {
 main.article {
   flex-direction: column;
   align-items: center;
+  height: auto;
+  padding-bottom: 5rem;
 }
 
 .wrapperArticlePage {
   display: flex;
-  position: relative;
-  height: 80vh;
-  padding-bottom: 0;
-  background-color: violet;
-}
-
-.wrapperArticlePage > h2 {
-  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
 
 article.articlePage {
+  height: unset;
+  margin: unset;
+  padding: unset;
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+article.articlePage div {
+  position: absolute;
+  top: 2rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  text-shadow: 0 0 8px black;
+  background-color: rgba(156, 154, 154, 0.233);
+  padding: 1rem;
+}
+
+article.articlePage h1 {
+  all: unset;
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+}
+
+article.articlePage h2 {
+  all: unset;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgb(206, 255, 253);
+}
+
+article.articlePage p {
+  font-size: 1.5rem;
 }
 
 img.articleImage {
+  margin: unset;
   height: var(--big_square_side);
   width: var(--big_square_side);
   object-fit: cover;
+}
+
+#btnComment,
+#sendComment {
+  border: none;
+  background: var(--bg_link);
+  color: white;
+  font-size: 1.5rem;
+  width: 50%;
+  margin: 2rem auto;
+  padding: 0.8rem;
+  cursor: pointer;
 }
 
 form {
@@ -117,6 +168,7 @@ form.post-suggestion input[type="text"] {
   border-bottom: solid 2px var(--bg_header);
   width: 20vw;
   font-size: 1.2rem;
+  padding: 0.5rem;
 }
 
 form.post-suggestion input[type="submit"] {
@@ -137,37 +189,65 @@ form.post-suggestion textarea {
 }
 
 form.let-comment {
+  width: 50%;
   margin-top: 0;
+  align-items: flex-end;
+  font-size: 1.5rem;
+
+  /* background-color: violet; */
 }
 
-.formcontainer {
-  background: blanchedalmond;
-  padding: 3rem;
-  position: absolute;
-  right: 0;
-  transform: scaleY(0);
-  transform-origin: top;
+form.let-comment input,
+form.let-comment textarea {
+  width: 500px;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border: none;
+  border-bottom: solid 3px var(--bg_link);
+}
+
+main.article > h2 {
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+}
+.commentList ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+}
+
+.commentList li {
+  margin: 2rem 0;
+  list-style: none;
+  font-size: 1.5rem;
+  display: block;
+  width: 500px;
+  padding: 1rem;
+  background-color: rgba(89, 226, 226, 0.2);
+}
+
+.commentList li h3 {
+  font-size: 80%;
+}
+
+.commentList li * + * {
+  margin-top: 0.5rem;
 }
 
 .listwraper {
   width: auto;
 }
 
-article {
-  margin: 10px;
-  /* box-shadow: 0 0 80px rgba(0, 0, 0, 0.116); */
-  padding: 20px;
-  width: 50vw;
-  height: calc(var(--square_side) + 2vw);
-}
 article * + * {
   /* display: block; */
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 article.frontPage {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 3rem;
   margin: 2rem 0;
   justify-content: center;
@@ -183,11 +263,6 @@ div.imagen {
   height: var(--square_side);
 }
 
-div.text {
-  height: var(--square_side);
-  width: calc(var(--square_side) + 5vw);
-}
-
 img.frontPage {
   height: var(--square_side);
   width: var(--square_side);
@@ -195,11 +270,13 @@ img.frontPage {
 }
 
 div.text {
+  height: var(--square_side);
+  width: calc(var(--square_side) + 5vw);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   border-bottom: solid 4px var(--bg_header);
-  padding: 2rem 0;
+  padding: 0.5rem 0;
 }
 /* -----------animation & actions--------------------- */
 
