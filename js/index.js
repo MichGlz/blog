@@ -3,6 +3,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const articleId = urlParams.get("article");
 
 let approveBtn;
+let faders;
 
 if (articleId) {
   console.log(articleId);
@@ -29,6 +30,7 @@ function getPost() {
     .then((res) => res.json())
     .then((response) => {
       showPosts(response);
+      faderMachine();
     })
     .catch((err) => {
       console.error(err);
@@ -104,3 +106,40 @@ function approveArticle() {
       console.error(err);
     });
 }
+//-------------- fade in -------------------
+
+const appearOptions = {
+  threshold: 0,
+  rootMargin: "0px 0px -150px 0px",
+};
+
+const appearOnScroll = new IntersectionObserver(function (
+  entries,
+  appearOnScroll
+) {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) {
+      console.log("hola");
+      return;
+    } else {
+      entry.target.classList.add("appear");
+      appearOnScroll.unobserve(entry.target);
+    }
+  });
+},
+appearOptions);
+
+function faderMachine() {
+  faders = document.querySelectorAll(".fade-in");
+  console.log("fade-in");
+  faders.forEach((fader) => {
+    appearOnScroll.observe(fader);
+  });
+}
+// window.addEventListener("scroll", (e) => {
+//   if (document.documentElement.scrollTop > 700) {
+//     document.querySelector("#headerWrapper").classList.add("scrolled");
+//   } else {
+//     document.querySelector("#headerWrapper").classList.remove("scrolled");
+//   }
+// });

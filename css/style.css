@@ -2,9 +2,11 @@
 :root {
   --hight: calc(150px + 6rem);
   --bg_link: rgb(58, 106, 112);
-  --bg_header: rgb(99, 178, 189);
+  /*rgb(99, 178, 189);*/
+  --bg_header: #f2aa4c;
   --square_side: 15vw;
   --big_square_side: 50vw;
+  --comp-coloor: #101820;
 }
 
 * {
@@ -12,6 +14,10 @@
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
+  color: var(--bg_header);
+}
+body {
+  background-color: var(--comp-coloor);
 }
 
 main {
@@ -35,9 +41,9 @@ article {
 /*----------header & nav---------------*/
 
 header a.btn {
-  color: white;
+  color: var(--bg_header);
   font-size: 1.2rem;
-  background-color: var(--bg_link);
+  background-color: var(--comp-coloor);
   padding: 0.5rem 1rem;
 }
 
@@ -58,12 +64,12 @@ header {
   align-items: flex-end;
   justify-content: space-between;
   z-index: 100;
-  box-shadow: 0 5px 15px white;
+  box-shadow: 0 5px 15pxvar (--comp-coloor);
 }
 
 header h1 {
   font-family: "Love Ya Like A Sister", cursive;
-  color: white;
+  color: var(--comp-coloor);
   font-size: 3.5rem;
   font-weight: lighter;
 }
@@ -131,7 +137,7 @@ article.articlePage h2 {
   all: unset;
   font-size: 1.5rem;
   font-weight: 700;
-  color: rgb(206, 255, 253);
+  color: var(--bg_header);
 }
 
 article.articlePage p {
@@ -148,8 +154,8 @@ img.articleImage {
 #btnComment,
 #sendComment {
   border: none;
-  background: var(--bg_link);
-  color: white;
+  background: var(--bg_header);
+  color: var(--comp-coloor);
   font-size: 1.5rem;
   width: 50%;
   margin: 2rem auto;
@@ -170,6 +176,11 @@ form.post-suggestion {
   margin: 2vh;
 }
 
+form input,
+form textarea {
+  background-color: var(--comp-coloor);
+}
+
 form.post-suggestion input[type="text"] {
   border: none;
   border-bottom: solid 2px var(--bg_header);
@@ -180,8 +191,8 @@ form.post-suggestion input[type="text"] {
 
 form.post-suggestion input[type="submit"] {
   border: none;
-  background-color: var(--bg_link);
-  color: white;
+  background-color: var(--bg_header);
+  color: var(--comp-coloor);
   width: 20vw;
   font-size: 1.2rem;
   padding: 0.5rem 0;
@@ -189,7 +200,7 @@ form.post-suggestion input[type="submit"] {
 }
 
 form input[type="submit"]:hover {
-  box-shadow: -1px 1px 5px black;
+  box-shadow: -1px 1px 5px var(--bg_header);
   transform: scale(1.02);
 }
 
@@ -215,7 +226,7 @@ form.let-comment textarea {
   font-size: 1.2rem;
   padding: 0.5rem;
   border: none;
-  border-bottom: solid 3px var(--bg_link);
+  border-bottom: solid 3px var(--bg_header);
 }
 
 main.article > h2 {
@@ -232,7 +243,7 @@ div.commentsContainer {
   background: linear-gradient(
     0deg,
     var(--bg_header) 0%,
-    rgb(255, 255, 255) 50%
+    var(--comp-coloor) 50%
   );
   width: 100%;
   display: flex;
@@ -253,12 +264,18 @@ div.commentsContainer {
   display: block;
   width: 500px;
   padding: 1.5rem;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--bg_header);
   border-radius: 5px;
 }
 
 .commentList li h3 {
   font-size: 80%;
+}
+
+.commentList li h3,
+.commentList li h3 span,
+.commentList li p {
+  color: var(--comp-coloor);
 }
 
 .commentList li * + * {
@@ -318,17 +335,15 @@ div.text {
   display: none;
 }
 
-.slideIn {
-  animation: slideIn 0.2s linear forwards;
+.fade-in.appear {
+  animation: slideIn 0.5s linear forwards;
 }
 
 @keyframes slideIn {
   from {
-    transform: scaleY(0);
     opacity: 0;
   }
   to {
-    transform: scaleY(1);
     opacity: 1;
   }
 }
@@ -340,10 +355,22 @@ div.text {
 @keyframes alert {
   from {
     background: var(--bg_link);
-    color: white;
+    color: var(--comp-coloor);
   }
   to {
     background: rgb(194, 81, 81);
-    color: white;
+    color: var(--comp-coloor);
   }
 }
+
+/*---------java fade in------------*/
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+/* .scrolled {
+  transition: all 1s;
+  box-shadow: 0px 3px 13px -7px #000000,
+    5px -1px 15px 5px rgba(198, 198, 198, 0.06);
+} */
